@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Month_start_date__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( NOT( ISBLANK( TEXT(Month__c )) ) &amp;&amp; NOT( ISBLANK( TEXT( Year__c  )) ) ,
+CASE(Month__c,
+ &quot;January&quot;,&quot;1&quot;,
+&quot;February&quot;,&quot;2&quot;,
+&quot;March&quot;,&quot;3&quot;,
+&quot;April&quot;,&quot;4&quot;,
+&quot;May&quot;,&quot;5&quot;,
+&quot;June&quot;,&quot;6&quot;,
+&quot;July&quot;,&quot;7&quot;,
+&quot;August&quot;,&quot;8&quot;,
+&quot;September&quot;,&quot;9&quot;,
+&quot;October&quot;,&quot;10&quot;,
+&quot;November&quot;,&quot;11&quot;,
+&quot;December&quot;,&quot;12&quot;,
+&quot;&quot;) + &quot;/&quot; +&quot;1&quot;+ &quot;/&quot; + TEXT(Year__c),NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Month start date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

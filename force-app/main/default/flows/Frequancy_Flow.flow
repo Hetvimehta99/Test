@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <assignments>
+        <name>Copy_1_of_qure</name>
+        <label>Copy 1 of qure</label>
+        <locationX>182</locationX>
+        <locationY>587</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Remaining_Allocation__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Remaining</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>ResetCompleted</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>ResetCompleted</name>
+        <label>ResetCompleted</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Completed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>SetLastAndNextAllocation</name>
+        <label>SetLastAndNextAllocation</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Last_Allocation__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>TodayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Next_Allocation__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SetNextAllocation</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Copy_1_of_qure</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>IsCompleted</name>
+        <label>IsCompleted</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Copy_1_of_qure</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Completed__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SetLastAndNextAllocation</targetReference>
+            </connector>
+            <label>True</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>FinalRemainingAllocation</name>
+        <dataType>Number</dataType>
+        <expression>If({!$Record.Completed__c} == true,{!Remaining}-1,{!Remaining})</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>LastAllocation</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record__Prior.Next_Allocation__c}</expression>
+    </formulas>
+    <formulas>
+        <name>Monthly</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.End_Date__c} ,1)</expression>
+    </formulas>
+    <formulas>
+        <name>Quarterly</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.End_Date__c},3)</expression>
+    </formulas>
+    <formulas>
+        <name>Remaining</name>
+        <dataType>Number</dataType>
+        <expression>IF(ISBLANK({!$Record.Next_Allocation__c}),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Quarterly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Start_Date__c} )/90)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Monthly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Start_Date__c} )/30)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Yearly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Start_Date__c} )/365)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Monthly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Start_Date__c} )/15)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Yearly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Start_Date__c} )/180)),1
+))))),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Quarterly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Next_Allocation__c} )/90)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Monthly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Next_Allocation__c} )/30)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Yearly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Next_Allocation__c} )/365)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Monthly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Next_Allocation__c} )/15)),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Yearly&apos;), (FLOOR(( {!$Record.End_Date__c} - {!$Record.Next_Allocation__c} )/180)),1
+)))))
+)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>Semi_Monthly</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.End_Date__c} + 15</expression>
+    </formulas>
+    <formulas>
+        <name>Semi_Yearly</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.End_Date__c},6)</expression>
+    </formulas>
+    <formulas>
+        <name>SetNextAllocation</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Next_Allocation__c}),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Quarterly&apos;), ADDMONTHS({!$Record.Start_Date__c} ,3),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Monthly&apos;), ADDMONTHS({!$Record.Start_Date__c} ,1),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Yearly&apos;), ADDMONTHS({!$Record.Start_Date__c} ,12),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Monthly&apos;), {!$Record.Start_Date__c} +15,
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Yearly&apos;), ADDMONTHS({!$Record.Start_Date__c} ,6),Today()
+))))),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Quarterly&apos;), ADDMONTHS({!$Record.Next_Allocation__c} ,3),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Monthly&apos;), ADDMONTHS({!$Record.Next_Allocation__c} ,1),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Yearly&apos;), ADDMONTHS({!$Record.Next_Allocation__c} ,12),
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Monthly&apos;), {!$Record.Next_Allocation__c} +15,
+IF( ISPICKVAL({!$Record.Frequency__c}, &apos;Semi - Yearly&apos;), ADDMONTHS({!$Record.Next_Allocation__c} ,6),Today()
+))))))</expression>
+    </formulas>
+    <formulas>
+        <name>TodayDate</name>
+        <dataType>Date</dataType>
+        <expression>Today()</expression>
+    </formulas>
+    <formulas>
+        <name>Yearly</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.End_Date__c},12)</expression>
+    </formulas>
+    <interviewLabel>Frequancy Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Frequancy Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>IsCompleted</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>End_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Frequency__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

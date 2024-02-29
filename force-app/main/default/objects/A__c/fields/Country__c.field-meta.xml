@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country__c</fullName>
+    <externalId>false</externalId>
+    <label>Country</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Chile sales</fullName>
+                <default>false</default>
+                <label>Chile sales</label>
+            </value>
+            <value>
+                <fullName>Argentia sales</fullName>
+                <default>false</default>
+                <label>Argentia sales</label>
+            </value>
+            <value>
+                <fullName>Brazil sales</fullName>
+                <default>false</default>
+                <label>Brazil sales</label>
+            </value>
+            <value>
+                <fullName>Paris sales</fullName>
+                <default>false</default>
+                <label>Paris sales</label>
+            </value>
+            <value>
+                <fullName>New york sales</fullName>
+                <default>false</default>
+                <label>New york sales</label>
+            </value>
+            <value>
+                <fullName>adalaide sales</fullName>
+                <default>false</default>
+                <label>adalaide sales</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

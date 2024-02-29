@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>EW_OD_Cancel</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Close</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Delete_Error</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Delete Error</shortDescription>
+        <value>Are you sure you want to delete this file?</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Delete_Icon</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Delete Icon</shortDescription>
+        <value>utility:delete</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Download_Icon</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Download Icon</shortDescription>
+        <value>utility:download</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Error_Date</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Error Date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Error_Description</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Error Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Error_Name</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Error Name</shortDescription>
+        <value>Error Name</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Error_RecordId</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Error RecordId</shortDescription>
+        <value>Record Id</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Error_Status</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Error Status</shortDescription>
+        <value>Error Status</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_File_Header</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD File Header</shortDescription>
+        <value>OneDrive Files</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_File_Icon</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD File Icon</shortDescription>
+        <value>standard:document_reference</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_File_Popup_Header</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD File Popup Header</shortDescription>
+        <value>All Files</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_No_Permission</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD No Permission</shortDescription>
+        <value>You have no permissions for uploading files to OneDrive. Please contact your system Administrator for more info.</value>
+    </labels>
+    <labels>
+        <fullName>EW_OD_Submit</fullName>
+        <categories>OneDrive</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EW OD Submit</shortDescription>
+        <value>Submit File</value>
+    </labels>
+    <labels>
+        <fullName>Welcome_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Welcome Message</shortDescription>
+        <value>Have A Great Day.</value>
+    </labels>
+</CustomLabels>

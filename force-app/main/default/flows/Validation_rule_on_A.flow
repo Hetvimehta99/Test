@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Assign_Number</name>
+        <label>Assign Number</label>
+        <locationX>321</locationX>
+        <locationY>238</locationY>
+        <assignmentItems>
+            <assignToReference>A.Rent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Number_validate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>A_object</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>Validation rule on A {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Validation rule on A</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>A_object</name>
+        <label>A object</label>
+        <locationX>490</locationX>
+        <locationY>357</locationY>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <inputReference>A</inputReference>
+    </recordCreates>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>649</locationX>
+        <locationY>270</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_Screen1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 15px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Liberation Sans&amp;quot;, sans-serif; color: rgb(35, 38, 41);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Validate</name>
+        <label>Validate</label>
+        <locationX>455</locationX>
+        <locationY>205</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Assign_Number</targetReference>
+        </connector>
+        <fields>
+            <name>Number_validate</name>
+            <dataType>Number</dataType>
+            <fieldText>Number validate</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>0</scale>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>330</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Validate</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>A</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>A__c</objectType>
+    </variables>
+</Flow>
